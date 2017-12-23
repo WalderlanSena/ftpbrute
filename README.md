@@ -13,6 +13,12 @@
   <img src="https://github.com/WalderlanSena/ftpbrute/blob/master/imgs/exemplo02.png">
 </p>
 
+<h2>When the password is found the script returns</h2>
+
+<p align="center">
+  <img src="https://github.com/WalderlanSena/ftpbrute/blob/master/imgs/exemplo03.png">
+</p>
+
 ## License
 
  <b>FTPBrute</b> is open source software licensed under the <b>GPL License</b>.
