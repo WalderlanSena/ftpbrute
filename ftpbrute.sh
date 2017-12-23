@@ -34,10 +34,10 @@ Usage: $0 [USER] [WORDLIST] [IP] [PORT]...
    or: $0 [USER] [WORDLIST] [IP] [PORT] [OPTIONS]
 
 Options:
-\t--help     exibir esta ajuda e sair.
-\t--version  exibir informações sobre a versão e sair.
+\t--help     display this help and exit.
+\t--version  display version information and exit.
 
-\t-i  instalar no seu desktop no diretorio /usr/bin/
+\t-i  install on your desktop in the /usr/bin/
 
 Example of execution:
 \t./ftpbrute.sh admin wordlist.txt 187.99.150.72 21
@@ -50,13 +50,13 @@ case $1 in
         echo -e "$scriptversion"
         exit;;
     -i)
-    echo -e "\033[1;32m[ + ]\033[m Iniciando a instalação em /usr/bin/"
+    echo -e "\033[1;32m[ + ]\033[m Starting the installation on /usr/bin/"
     if sudo cp ftpbrute.sh /usr/bin/ftpbrute
     then
-        echo -e "\033[1;32m[ OK ]\033[m Instalado com sucesso em /usr/bin/ agora realize a chamada do software,\n\n\t \033[46mApenas com 'ftpbrute [USER] [WORDLIST] [IP] [PORT]'\033[m\n"
+        echo -e "\033[1;32m[ OK ]\033[m Successfully installed on /usr/bin/ now carry out the software call,\n\n\t \033[46mApenas com 'ftpbrute [USER] [WORDLIST] [IP] [PORT]'\033[m\n"
         exit
     else
-        echo -e "$error Não foi possivel realizar a instalação..."
+        echo -e "$error Unable to install..."
         exit
     fi
     echo "";;
